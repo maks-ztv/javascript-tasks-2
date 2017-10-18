@@ -1,6 +1,28 @@
 'use strict';
 
-var phoneBook; // Здесь вы храните записи как хотите
+var phoneBook = []; // Здесь вы храните записи как хотите
+
+
+function checkName(name) {
+    var regExp = /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/u
+    return regExp.test(name);
+}
+
+function checkPhone(phone) {
+    var regExp = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+    return regExp.test(phone);
+}
+
+function checkEmail(email) {
+    var regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regExp.test(email);
+}
+
+function samePhone(phone) {
+    return phoneBook.some(function (el) {
+        return el.phone === phone;
+    });
+}
 
 /*
    Функция добавления записи в телефонную книгу.
@@ -8,8 +30,11 @@ var phoneBook; // Здесь вы храните записи как хотит�
 */
 module.exports.add = function add(name, phone, email) {
 
-    // Ваша невероятная магия здесь
-
+    if (!checkName(name) || !checkEmail(email) || samePhone(phone)) {
+        return;
+    }
+    phoneBook.push({name: name, phone: phone, email: email});
+    console.log('добавлено записей', phoneBook);
 };
 
 /*
@@ -18,8 +43,11 @@ module.exports.add = function add(name, phone, email) {
 */
 module.exports.find = function find(query) {
 
-    // Ваша удивительная магия здесь
-
+    return phoneBook.filter(function (el) {
+        return Object.keys(el).some(function (key) {
+            return el[key].includes(query);
+        });
+    });
 };
 
 /*
@@ -27,7 +55,16 @@ module.exports.find = function find(query) {
 */
 module.exports.remove = function remove(query) {
 
-    // Ваша необьяснимая магия здесь
+    var oldLength = phoneBook.length;
+    phoneBook = phoneBook.filter(function (el) {
+
+        return !Object.keys(el).some(function (key) {
+            return el[key].includes(query);
+        });
+
+    });
+    var newLength = phoneBook.length;
+    console.log('удалено записей', oldLength - newLength);
 
 };
 

@@ -4,13 +4,15 @@ var phoneBook = require('./phoneBook');
 
 // Добавляем записи
 phoneBook.add('Сергей', '7 999 6667778', 'gs@example.com');
-phoneBook.add('Сергей 2', '999 4433444', 'gs@example.com');
+phoneBook.add('Сергей ddd', '+1234 5678 0000', 'new@new.com');
 phoneBook.add('Олег', '+7 (999) 777-7-777', 'just7@yandex-team.ru');
+phoneBook.add('Сергей Сергей', '999 4433444', 'gs@example.com');
 
 // Невалидные данные не должны попадать в книгу!
 phoneBook.add('Честный Хрюндель', 'invalid phone', 'honest-hrundel');
+phoneBook.add('1213131', 'sadsadsa', 'just7-team.ru');
 
-phoneBook.find('777');
+console.log('найдено записей', phoneBook.find('999'));
 // Выводит построчно записи, все поля через запятую:
 // Сергей, +7 (999) 666-7-778, gogolef@yandex-team.ru
 // Олег, +7 (999) 777-7-777, just7@yandex-team.ru
