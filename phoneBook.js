@@ -34,7 +34,7 @@ module.exports.add = function add(name, phone, email) {
 */
 module.exports.find = function find(query) {
 
-    phoneBook.filter(function (element, index, array) {
+    return phoneBook.filter(function (element) {
         for (var prop in element) {
             if (element[prop].includes(query)) {
                 console.log(element, 'find elements');
