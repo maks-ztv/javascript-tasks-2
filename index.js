@@ -12,7 +12,7 @@ phoneBook.add('Сергей Сергей', '999 4433444', 'gs@example.com');
 phoneBook.add('Честный Хрюндель', 'invalid phone', 'honest-hrundel');
 phoneBook.add('1213131', 'sadsadsa', 'just7-team.ru');
 
-console.log('найдено записей', phoneBook.find('999'));
+console.log('найдено записей', phoneBook.find('Сергей'));
 // Выводит построчно записи, все поля через запятую:
 // Сергей, +7 (999) 666-7-778, gogolef@yandex-team.ru
 // Олег, +7 (999) 777-7-777, just7@yandex-team.ru

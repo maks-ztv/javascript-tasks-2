@@ -47,7 +47,9 @@ module.exports.find = function find(query) {
         return Object.keys(el).some(function (key) {
             return el[key].includes(query);
         });
-    });
+    }).map(function (obj) {
+        return obj.name + ' ' + obj.phone + ' ' + obj.email + ',';
+    }).join('\n');
 };
 
 /*
